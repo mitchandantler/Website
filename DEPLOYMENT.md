@@ -46,7 +46,7 @@ Render on push to `main`).
 | `DJANGO_SETTINGS_MODULE` | `config.settings.production` — recommended for clarity, but **`manage.py` now auto-detects Render via the `RENDER=true` variable Render sets on every service automatically, and defaults to production settings even if this isn't set explicitly** (added after this env var failed to take effect on a second deploy attempt — root cause of that second failure was never confirmed, this is a safety net either way) |
 | `SECRET_KEY` | A real generated key — `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`. Never reuse the local dev key from `.env` |
 | `ALLOWED_HOSTS` | Your Render subdomain (e.g. `mitchandantler.onrender.com`) plus `mitchandantler.com,www.mitchandantler.com` once DNS is pointed here. No default — will crash on startup if unset |
-| `DATABASE_URL` | A Render PostgreSQL instance's connection string (Render can provision one — add a Postgres service and Render usually injects this automatically if linked). **Without this it silently falls back to SQLite** (via the default in `config/settings/base.py`), which loses all data on every redeploy on Render's ephemeral filesystem — do not leave this unset |
+| `DATABASE_URL` | A Render PostgreSQL instance's connection string (Render can provision one — add a Postgres service and Render usually injects this automatically if linked). **Without this it silently falls back to SQLite** (via the default in `config/settings/base.py`), which loses all data on every redeploy on Render's ephemeral filesystem — do not leave this unset. **Confirmed missing as of 2026-08-01** — see §1b for the fix plus the one-time local→Render data migration this made necessary |
 | `TIME_ZONE` | `Australia/Sydney` (optional, that's already the default) |
 | `RESEND_API_KEY`, `DEFAULT_FROM_EMAIL`, `CONTACT_NOTIFICATION_EMAIL` | For the Contact form email — see §3 below for what happens if left blank |
 
@@ -85,6 +85,93 @@ setting needed.
 - `ImproperlyConfigured: ... ALLOWED_HOSTS` → that env var isn't set
 - Site loads but completely unstyled → `static/css/tailwind.css` wasn't committed/up to date, or `collectstatic` didn't run
 - Data disappears after a redeploy → `DATABASE_URL` isn't set (site silently fell back to ephemeral SQLite)
+- Local admin content doesn't match live site → local and Render have always been separate databases; see §1b for the one-time migration
+
+---
+
+## 1b. One-Time Data Migration: Local → Render Postgres
+
+**Why this exists:** as of 2026-08-01, Render had no `DATABASE_URL` set, so the
+live site was silently running on ephemeral SQLite (or possibly not
+persisting at all across redeploys) — a completely separate database from
+the local one used for all development/testing. This is why the local admin
+and the live Render admin never matched: the real 45-item menu, About Us
+story, promotions, gallery, opening hours, socials, etc. only ever existed
+locally. This section is a one-time fix to get that content onto a real,
+persistent Render Postgres database.
+
+### Step 1 — Provision Postgres on Render
+
+1. Render Dashboard → **New → PostgreSQL**, same region as the web service.
+2. Render's free Postgres tier is **only free for 90 days**, then it's
+   deleted unless upgraded to a paid plan — don't put this off indefinitely
+   once real customer/menu data is in it.
+3. Copy the **Internal Database URL** it gives you.
+4. Web service → **Environment** tab → add `DATABASE_URL` = that internal
+   connection string. This alone fixes the "not persisting" problem going
+   forward, even before any data migration.
+
+### Step 2 — Export local content
+
+```
+./scripts/export_local_data.sh
+```
+
+Writes `data/production_seed.json` (a Django fixture). Deliberately
+excludes `auth`/`sessions`/`contenttypes`/`admin.logentry` (the Render
+superuser is created/reset separately — see §8) and
+`contact.contactsubmission` (real test submissions from local dev, not site
+content — don't copy fake "customers" into production). As of this export:
+80 records — 1 `SiteSetting`, 1 `Socials`, 7 `OpeningHours`, 8
+`GalleryImage`, 8 `DietaryTag`, 5 `MenuCategory`, 45 `MenuItem`, 2
+`Promotion`, 1 `AboutPageContent`, 1 `HeroImage`, 1 `HomePageContent`.
+
+Commit and push `data/production_seed.json` so Render's build has access to
+it (Render deploys from the git repo, there's no other way to get a file
+onto it without a paid Shell tab).
+
+### Step 3 — Load it into Render Postgres (temporary Build Command edit)
+
+Web service → **Settings → Build Command**, temporarily change to:
+
+```
+pip install -r requirements/production.txt && python manage.py migrate && python manage.py loaddata data/production_seed.json && python manage.py collectstatic --no-input
+```
+
+Trigger a manual deploy. **As soon as it succeeds, revert the Build Command
+back to the normal version** (without the `loaddata` step) and redeploy
+again:
+
+```
+pip install -r requirements/production.txt && python manage.py migrate && python manage.py collectstatic --no-input
+```
+
+This matters — `loaddata` is not something to leave running on every
+deploy. It overwrites rows by primary key on every run, so if it stayed in
+the Build Command, any edits made afterward through Render's live `/admin/`
+would get silently reverted back to this local snapshot on the next push.
+It's a one-time seed, not an ongoing sync.
+
+### Step 4 — Media files (images) need separate handling
+
+`dumpdata`/`loaddata` only moves database rows — `MenuItem.image`,
+`GalleryImage.image`, `Promotion.image`, and `HeroImage.image` fields will
+point at file paths that don't physically exist on Render yet (local
+`media/` is `.gitignore`d, not committed). As of this writing that's 16
+files, ~7MB total. Two options:
+
+- **Re-upload manually** through Render's live `/admin/` after the data
+  load — only 16 files, probably the least error-prone option.
+- **Commit `media/` temporarily** (bypass `.gitignore`, push, then decide
+  whether to keep it tracked or remove it once confirmed working).
+
+**Bigger unresolved issue, flagging rather than fixing now:** Render's free
+web-service tier has an *ephemeral filesystem* — even after this migration,
+any new image uploaded through the live admin will vanish on the next
+redeploy, indefinitely, until this is addressed properly. The real fix is
+external persistent storage (e.g. Cloudflare R2 or S3 via
+`django-storages`) or Render's paid persistent-disk add-on. That's a
+bigger, separately-costed decision — not bundled into this fix.
 
 ---
 

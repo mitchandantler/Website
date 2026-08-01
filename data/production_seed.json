@@ -1,0 +1,1201 @@
+[
+{
+  "model": "common.sitesetting",
+  "pk": 1,
+  "fields": {
+    "phone_number": "0732143695",
+    "contact_email": "hello@mitchandantler.com",
+    "address": "62 Suez St, Mitchelton QLD 4053",
+    "google_maps_embed_url": "https://maps.app.goo.gl/LeFa2AjozuJQVX4t8",
+    "opentable_embed_url": "https://bookings.nowbookit.com/?accountid=e6797445-1445-4547-a711-c7b50ea8a6fb&venueid=9715&theme=light&colors=hex,0d5302,f8bbd0",
+    "uber_eats_url": "http://ubereats.com/au/store/mitch-and-antler/41KA8qKrULen3FjusK3Uww?diningMode=DELIVERY&pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMjY1JTIwU3VleiUyMFN0JTIyJTJDJTIycmVmZXJlbmNlJTIyJTNBJTIyRWlvMk5TQlRkV1Y2SUZOMExDQk5hWFJqYUdWc2RHOXVJRkZNUkNBME1EVXpMQ0JCZFhOMGNtRnNhV0VpTUJJdUNoUUtFZ25UUWdSdUJGZVJheEh4aml2TVdxTUNFeEJCS2hRS0VnbnIwcHNUQkZlUmF4RmlqTXowNEdSa1h3JTIyJ",
+    "doordash_url": "http://doordash.com/store/mitch-and-antler-mitchelton-25070925/?utm_campaign=gpa&rwg_token=AE37R_gz4wjwRLS5XWyPtUCybLwJB_QK_2CsHyDO7q_K6RdsgyfE0ZK06FQbhd3Kgkw3_SQpCygwCXH7HsTuZ_gIHRZAE9Pyvw%3D%3D",
+    "qr_ordering_url": "https://order.chewzie.me/mitchandantler/",
+    "created_at": "2026-07-30T13:07:44.444Z",
+    "updated_at": "2026-07-31T15:35:16.730Z"
+  }
+},
+{
+  "model": "common.socials",
+  "pk": 1,
+  "fields": {
+    "instagram_url": "https://www.instagram.com/mitch.and.antler/",
+    "facebook_url": "https://www.facebook.com/mitch.and.antler",
+    "tiktok_url": "https://www.tiktok.com/@mitchantler",
+    "created_at": "2026-07-31T15:56:04.604Z",
+    "updated_at": "2026-07-31T15:58:10.214Z"
+  }
+},
+{
+  "model": "website.homepagecontent",
+  "pk": 1,
+  "fields": {
+    "hero_heading": "Great coffee, honest food, good company.",
+    "hero_subheading": "A neighbourhood café serving breakfast, brunch, and coffee done properly.",
+    "created_at": "2026-07-31T13:43:21.337Z",
+    "updated_at": "2026-07-31T13:43:21.337Z"
+  }
+},
+{
+  "model": "website.aboutpagecontent",
+  "pk": 1,
+  "fields": {
+    "heading": "Our Story",
+    "story": "At Mitch & Antler, we believe a great café is about more than just coffee—it's about creating a place where people feel welcome, connected, and at home.\n\nNestled in the heart of Mitchelton, we've created a space where neighbours become friends, families gather, and visitors can slow down and enjoy exceptional food, specialty coffee, and genuine hospitality. Whether you're stopping by for your morning coffee, catching up with friends over brunch, or enjoying a relaxed lunch, every visit is an opportunity to create memorable moments.\n\nOur menu is thoughtfully crafted using quality ingredients, combining familiar favourites with fresh, modern flavours. Every dish and every cup of coffee is prepared with care, because we believe the little details make all the difference.\n\nMore than anything, Mitch & Antler is built on the values of warmth, kindness, and community. We take pride in knowing our regulars by name while making every first-time guest feel like they've been here before. We're also proudly dog-friendly, so your four-legged companions are always welcome to join you.\n\nThank you for making Mitch & Antler part of your day. We look forward to welcoming you through our doors and sharing many more coffees, conversations, and celebrations together.",
+    "created_at": "2026-08-01T10:08:02.559Z",
+    "updated_at": "2026-08-01T10:09:00.961Z"
+  }
+},
+{
+  "model": "website.heroimage",
+  "pk": 4,
+  "fields": {
+    "image": "hero/HeroPhoto.jpg",
+    "alt_text": "HeroPhoto",
+    "display_order": 1,
+    "is_active": true,
+    "created_at": "2026-07-31T15:49:10.688Z",
+    "updated_at": "2026-07-31T15:49:10.688Z"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 4,
+  "fields": {
+    "name": "Gluten Free Option",
+    "slug": "gluten-free-option"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 5,
+  "fields": {
+    "name": "Vegan Friendly Option",
+    "slug": "vegan-friendly-option"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 6,
+  "fields": {
+    "name": "Dairy Free Option",
+    "slug": "dairy-free-option"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 7,
+  "fields": {
+    "name": "Vegetarian",
+    "slug": "vegetarian"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 8,
+  "fields": {
+    "name": "Gluten Free",
+    "slug": "gluten-free"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 9,
+  "fields": {
+    "name": "Vegetarian Option",
+    "slug": "vegetarian-option"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 10,
+  "fields": {
+    "name": "Vegan",
+    "slug": "vegan"
+  }
+},
+{
+  "model": "menu.dietarytag",
+  "pk": 11,
+  "fields": {
+    "name": "Dairy Free",
+    "slug": "dairy-free"
+  }
+},
+{
+  "model": "menu.menucategory",
+  "pk": 2,
+  "fields": {
+    "name": "All Day Menu",
+    "menu_type": "food",
+    "display_order": 1,
+    "is_active": true,
+    "created_at": "2026-07-31T12:39:33.493Z",
+    "updated_at": "2026-07-31T12:39:33.493Z"
+  }
+},
+{
+  "model": "menu.menucategory",
+  "pk": 3,
+  "fields": {
+    "name": "Little Ones",
+    "menu_type": "food",
+    "display_order": 1,
+    "is_active": true,
+    "created_at": "2026-07-31T14:08:17.538Z",
+    "updated_at": "2026-07-31T14:08:17.538Z"
+  }
+},
+{
+  "model": "menu.menucategory",
+  "pk": 4,
+  "fields": {
+    "name": "Coffee and Frappes",
+    "menu_type": "drink",
+    "display_order": 2,
+    "is_active": true,
+    "created_at": "2026-07-31T14:08:17.539Z",
+    "updated_at": "2026-07-31T14:08:17.539Z"
+  }
+},
+{
+  "model": "menu.menucategory",
+  "pk": 5,
+  "fields": {
+    "name": "Cold Beverages",
+    "menu_type": "drink",
+    "display_order": 3,
+    "is_active": true,
+    "created_at": "2026-07-31T14:08:17.539Z",
+    "updated_at": "2026-07-31T14:08:17.539Z"
+  }
+},
+{
+  "model": "menu.menucategory",
+  "pk": 6,
+  "fields": {
+    "name": "Cold Drinks",
+    "menu_type": "drink",
+    "display_order": 4,
+    "is_active": true,
+    "created_at": "2026-07-31T14:08:17.539Z",
+    "updated_at": "2026-07-31T14:08:17.539Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Truffle Avo Toast",
+    "description": "Smashed avo, confit tomato, stracciatella, truffle oil, pangrattato, and fresh basil",
+    "price": "22.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 1,
+    "created_at": "2026-07-31T14:39:01.068Z",
+    "updated_at": "2026-07-31T14:39:01.068Z",
+    "dietary_tags": [
+      6,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "name": "Banana Biscoff French Toast",
+    "description": "Caramelised banana, Biscoff crumb, Biscoff caramel, and vanilla mascarpone cream",
+    "price": "24.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 2,
+    "created_at": "2026-07-31T14:39:01.076Z",
+    "updated_at": "2026-07-31T14:39:01.076Z",
+    "dietary_tags": [
+      7
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "name": "Blueberry Bagel",
+    "description": "Toasted blueberry bagel with cinnamon butter, berry compote, and whipped ricotta honey",
+    "price": "19.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 3,
+    "created_at": "2026-07-31T14:39:01.080Z",
+    "updated_at": "2026-07-31T14:39:01.080Z",
+    "dietary_tags": [
+      4,
+      7
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 8,
+  "fields": {
+    "category": 2,
+    "name": "Szechuan Fold Omelette",
+    "description": "Thick cut kaiser bacon, pickled onion & cucumber, house-made Szechuan sticky chilli oil, fried shallots, spring onion",
+    "price": "26.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 4,
+    "created_at": "2026-07-31T14:39:01.084Z",
+    "updated_at": "2026-07-31T14:39:01.084Z",
+    "dietary_tags": [
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 9,
+  "fields": {
+    "category": 2,
+    "name": "Apple Pie & Biscoff Porridge",
+    "description": "Oat porridge, coconut labneh, caramelised apple pie filling, Biscoff crumb, Biscoff caramel",
+    "price": "21.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 5,
+    "created_at": "2026-07-31T14:39:01.089Z",
+    "updated_at": "2026-07-31T14:39:01.089Z",
+    "dietary_tags": [
+      11,
+      10
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 10,
+  "fields": {
+    "category": 2,
+    "name": "Mitchy's Smash Burger",
+    "description": "Smash patties, American cheddar cheese, tomato and lettuce on a milk bun + M&A special sauce",
+    "price": "25.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 6,
+    "created_at": "2026-07-31T14:39:01.093Z",
+    "updated_at": "2026-07-31T14:39:01.093Z",
+    "dietary_tags": [
+      4
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 11,
+  "fields": {
+    "category": 2,
+    "name": "Caesar Roll-Up",
+    "description": "Shredded chicken, chopped lettuce, sliced tomato & cucumber sourdough crouton, Caesar dressing, hard-boiled egg, Manchego",
+    "price": "23.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 7,
+    "created_at": "2026-07-31T14:39:01.096Z",
+    "updated_at": "2026-07-31T14:39:01.096Z",
+    "dietary_tags": [
+      4,
+      9
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 12,
+  "fields": {
+    "category": 2,
+    "name": "Mitchy's Sunrise Burger",
+    "description": "Bacon, fried egg, American cheddar, hashbrown, smashed avo, M&A special sauce, BBQ sauce",
+    "price": "25.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 8,
+    "created_at": "2026-07-31T14:39:01.100Z",
+    "updated_at": "2026-07-31T14:39:01.100Z",
+    "dietary_tags": [
+      6,
+      4,
+      9
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 13,
+  "fields": {
+    "category": 2,
+    "name": "Croque Madame",
+    "description": "Smoked ham, fried egg, mustard leek cream, manchego, cheddar cheese on cordelia sourdough",
+    "price": "24.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 9,
+    "created_at": "2026-07-31T14:39:01.104Z",
+    "updated_at": "2026-07-31T14:39:01.104Z",
+    "dietary_tags": [
+      4
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 14,
+  "fields": {
+    "category": 2,
+    "name": "The Reuben",
+    "description": "Rye sourdough, 150 grams housemade corned beef, swiss cheese + russian dressing",
+    "price": "25.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 10,
+    "created_at": "2026-07-31T14:39:01.107Z",
+    "updated_at": "2026-07-31T14:39:01.107Z",
+    "dietary_tags": [
+      6,
+      4
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 15,
+  "fields": {
+    "category": 2,
+    "name": "Mitchy's Big Fry Up",
+    "description": "Fried sourdough, eggs your way, bacon, LP's parsley & pecorino sausage, Stanbroke chipolatas, hashbrown, grilled tomato, garlic mushrooms, halloumi",
+    "price": "38.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 11,
+    "created_at": "2026-07-31T14:39:01.110Z",
+    "updated_at": "2026-07-31T14:39:01.110Z",
+    "dietary_tags": [
+      6,
+      4
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 16,
+  "fields": {
+    "category": 2,
+    "name": "Mitchy's Pot Pie",
+    "description": "Bacon lardons, leek, onion, potato in béchamel sauce with a puff pastry pie lid. Please allow 15 minutes.",
+    "price": "27.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 12,
+    "created_at": "2026-07-31T14:39:01.113Z",
+    "updated_at": "2026-07-31T14:39:01.113Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "name": "Tomato Soup & Grilled Cheese",
+    "description": "Three-cheese grilled cheese toastie on sourdough and a rich tomato soup",
+    "price": "23.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 13,
+    "created_at": "2026-07-31T14:39:01.115Z",
+    "updated_at": "2026-07-31T14:39:01.115Z",
+    "dietary_tags": [
+      4,
+      7
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "name": "Sausage Slow Beans",
+    "description": "Tomato & capsicum baked beans, sourdough croutons, charred eggplant, Manchego, LP's parsley & pecorino sausage, chives",
+    "price": "26.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 14,
+    "created_at": "2026-07-31T14:39:01.118Z",
+    "updated_at": "2026-07-31T14:39:01.118Z",
+    "dietary_tags": [
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 19,
+  "fields": {
+    "category": 2,
+    "name": "Nduja Chicken Penne",
+    "description": "Italian-style poached chicken, 'nduja & capsicum marinara, pecorino, pumpkin mustard fruit",
+    "price": "22.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 15,
+    "created_at": "2026-07-31T14:39:01.122Z",
+    "updated_at": "2026-07-31T14:39:01.122Z",
+    "dietary_tags": [
+      6
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 20,
+  "fields": {
+    "category": 2,
+    "name": "Madeleines",
+    "description": "House made madeleines (4). Please allow 15 minutes.",
+    "price": "8.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 16,
+    "created_at": "2026-07-31T14:39:01.125Z",
+    "updated_at": "2026-07-31T14:39:01.125Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 21,
+  "fields": {
+    "category": 3,
+    "name": "Beans on Toast",
+    "description": "Heinz beans on toasted milk bread",
+    "price": "13.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 1,
+    "created_at": "2026-07-31T14:39:01.127Z",
+    "updated_at": "2026-07-31T14:39:01.127Z",
+    "dietary_tags": [
+      6,
+      4
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 22,
+  "fields": {
+    "category": 3,
+    "name": "Ham & Cheese Toastie",
+    "description": "",
+    "price": "13.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 2,
+    "created_at": "2026-07-31T14:39:01.130Z",
+    "updated_at": "2026-07-31T14:39:01.130Z",
+    "dietary_tags": [
+      4
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 23,
+  "fields": {
+    "category": 3,
+    "name": "Kid's French Toast",
+    "description": "French toast with caramelised banana and maple syrup",
+    "price": "13.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 3,
+    "created_at": "2026-07-31T14:39:01.133Z",
+    "updated_at": "2026-07-31T14:39:01.133Z",
+    "dietary_tags": [
+      7
+    ]
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 24,
+  "fields": {
+    "category": 4,
+    "name": "Espresso / Macchiato / Piccolo",
+    "description": "",
+    "price": "4.80",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 1,
+    "created_at": "2026-07-31T14:39:01.136Z",
+    "updated_at": "2026-07-31T14:39:01.136Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 25,
+  "fields": {
+    "category": 4,
+    "name": "Flat White / Cappuccino / Long Black / Doppio / Latte / Mocha",
+    "description": "",
+    "price": "5.30",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 2,
+    "created_at": "2026-07-31T14:39:01.138Z",
+    "updated_at": "2026-07-31T14:39:01.138Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 26,
+  "fields": {
+    "category": 4,
+    "name": "Chai Latte",
+    "description": "",
+    "price": "5.50",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 3,
+    "created_at": "2026-07-31T14:39:01.140Z",
+    "updated_at": "2026-07-31T14:39:01.140Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 27,
+  "fields": {
+    "category": 4,
+    "name": "Hot Chocolate",
+    "description": "",
+    "price": "5.50",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 4,
+    "created_at": "2026-07-31T14:39:01.141Z",
+    "updated_at": "2026-07-31T14:39:01.141Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 28,
+  "fields": {
+    "category": 4,
+    "name": "Matcha Latte",
+    "description": "",
+    "price": "6.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 5,
+    "created_at": "2026-07-31T14:39:01.143Z",
+    "updated_at": "2026-07-31T14:39:01.143Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 29,
+  "fields": {
+    "category": 4,
+    "name": "OG Frappe (330ml)",
+    "description": "Coffee, chocolate, mocha, matcha, chai, dirty chai, or milo",
+    "price": "9.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 6,
+    "created_at": "2026-07-31T14:39:01.145Z",
+    "updated_at": "2026-07-31T14:39:01.145Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 30,
+  "fields": {
+    "category": 4,
+    "name": "Smoothie (500ml)",
+    "description": "Tropical Antioxidant, Mango Weis, or Strawberry Glow",
+    "price": "12.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 7,
+    "created_at": "2026-07-31T14:39:01.147Z",
+    "updated_at": "2026-07-31T14:39:01.147Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 31,
+  "fields": {
+    "category": 4,
+    "name": "Affogato",
+    "description": "Kasa Coffee doppio + Hokkaido soft serve",
+    "price": "8.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 8,
+    "created_at": "2026-07-31T14:39:01.148Z",
+    "updated_at": "2026-07-31T14:39:01.148Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 32,
+  "fields": {
+    "category": 4,
+    "name": "Softie",
+    "description": "Hokkaido soft serve with toppings of your choice",
+    "price": "9.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 9,
+    "created_at": "2026-07-31T14:39:01.150Z",
+    "updated_at": "2026-07-31T14:39:01.150Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 33,
+  "fields": {
+    "category": 4,
+    "name": "Milkshake",
+    "description": "Chocolate, vanilla, banana, strawberry, or caramel",
+    "price": "9.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 10,
+    "created_at": "2026-07-31T14:39:01.152Z",
+    "updated_at": "2026-07-31T14:39:01.152Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 34,
+  "fields": {
+    "category": 4,
+    "name": "Thickshake",
+    "description": "Chocolate, vanilla, banana, strawberry, or caramel",
+    "price": "11.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 11,
+    "created_at": "2026-07-31T14:39:01.153Z",
+    "updated_at": "2026-07-31T14:39:01.153Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 35,
+  "fields": {
+    "category": 5,
+    "name": "Earl Grey / English Breakfast / Chamomile / Green Tea / Chai / Peppermint",
+    "description": "",
+    "price": "5.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 1,
+    "created_at": "2026-07-31T14:39:01.155Z",
+    "updated_at": "2026-07-31T14:39:01.155Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 36,
+  "fields": {
+    "category": 5,
+    "name": "Iced Long Black",
+    "description": "",
+    "price": "7.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 2,
+    "created_at": "2026-07-31T14:39:01.157Z",
+    "updated_at": "2026-07-31T14:39:01.157Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 37,
+  "fields": {
+    "category": 5,
+    "name": "Mitchy's Iced Tea",
+    "description": "",
+    "price": "7.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 3,
+    "created_at": "2026-07-31T14:39:01.158Z",
+    "updated_at": "2026-07-31T14:39:01.158Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 38,
+  "fields": {
+    "category": 5,
+    "name": "Cold Brew",
+    "description": "",
+    "price": "7.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 4,
+    "created_at": "2026-07-31T14:39:01.160Z",
+    "updated_at": "2026-07-31T14:39:01.160Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 39,
+  "fields": {
+    "category": 5,
+    "name": "Spritz",
+    "description": "Strawberry, blueberry, or mango",
+    "price": "7.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 5,
+    "created_at": "2026-07-31T14:39:01.162Z",
+    "updated_at": "2026-07-31T14:39:01.162Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 40,
+  "fields": {
+    "category": 5,
+    "name": "Iced Latte",
+    "description": "",
+    "price": "7.50",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 6,
+    "created_at": "2026-07-31T14:39:01.163Z",
+    "updated_at": "2026-07-31T14:39:01.163Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 41,
+  "fields": {
+    "category": 5,
+    "name": "Iced Chocolate / Mocha",
+    "description": "",
+    "price": "7.50",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 7,
+    "created_at": "2026-07-31T14:39:01.165Z",
+    "updated_at": "2026-07-31T14:39:01.165Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 42,
+  "fields": {
+    "category": 5,
+    "name": "Iced Matcha / Chai",
+    "description": "",
+    "price": "7.50",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 8,
+    "created_at": "2026-07-31T14:39:01.167Z",
+    "updated_at": "2026-07-31T14:39:01.167Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 43,
+  "fields": {
+    "category": 5,
+    "name": "Matcha / Chai Splash",
+    "description": "",
+    "price": "8.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 9,
+    "created_at": "2026-07-31T14:39:01.168Z",
+    "updated_at": "2026-07-31T14:39:01.168Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 44,
+  "fields": {
+    "category": 5,
+    "name": "Matcha / Chai Float",
+    "description": "",
+    "price": "9.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 10,
+    "created_at": "2026-07-31T14:39:01.170Z",
+    "updated_at": "2026-07-31T14:39:01.170Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 45,
+  "fields": {
+    "category": 5,
+    "name": "Spanish Coffee",
+    "description": "",
+    "price": "9.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 11,
+    "created_at": "2026-07-31T14:39:01.172Z",
+    "updated_at": "2026-07-31T14:39:01.172Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 46,
+  "fields": {
+    "category": 5,
+    "name": "Biscoff Cookie Crumb Latte",
+    "description": "",
+    "price": "12.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 12,
+    "created_at": "2026-07-31T14:39:01.174Z",
+    "updated_at": "2026-07-31T14:39:01.174Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 47,
+  "fields": {
+    "category": 6,
+    "name": "Coca-Cola Variety Soda",
+    "description": "Coke, Coke Zero, or Orange Fanta",
+    "price": "6.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 1,
+    "created_at": "2026-07-31T14:39:01.176Z",
+    "updated_at": "2026-07-31T14:39:01.176Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 48,
+  "fields": {
+    "category": 6,
+    "name": "Bundaberg Ginger Beer",
+    "description": "",
+    "price": "6.00",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 2,
+    "created_at": "2026-07-31T14:39:01.178Z",
+    "updated_at": "2026-07-31T14:39:01.178Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 49,
+  "fields": {
+    "category": 6,
+    "name": "Wild Organic Juice",
+    "description": "Apple, apple + guava, pineapple, or orange",
+    "price": "6.50",
+    "image": "",
+    "is_available": true,
+    "is_approved": true,
+    "display_order": 3,
+    "created_at": "2026-07-31T14:39:01.179Z",
+    "updated_at": "2026-07-31T14:39:01.179Z",
+    "dietary_tags": []
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 4,
+  "fields": {
+    "image": "gallery/MA1.jpeg",
+    "caption": "M&A",
+    "alt_text": "Cafe",
+    "display_order": 2,
+    "is_active": true,
+    "created_at": "2026-07-31T16:05:11.410Z",
+    "updated_at": "2026-07-31T16:05:16.101Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 5,
+  "fields": {
+    "image": "gallery/MA2.webp",
+    "caption": "Friendly Neighbourhood",
+    "alt_text": "family",
+    "display_order": 3,
+    "is_active": true,
+    "created_at": "2026-07-31T16:06:06.792Z",
+    "updated_at": "2026-07-31T16:06:06.792Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 6,
+  "fields": {
+    "image": "gallery/MA4.webp",
+    "caption": "Party and Function",
+    "alt_text": "Party, Birthday, Function, Get together",
+    "display_order": 4,
+    "is_active": true,
+    "created_at": "2026-07-31T16:08:14.380Z",
+    "updated_at": "2026-07-31T16:08:14.380Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 7,
+  "fields": {
+    "image": "gallery/MA5.webp",
+    "caption": "Mitch and Antler",
+    "alt_text": "Best Cafe",
+    "display_order": 1,
+    "is_active": true,
+    "created_at": "2026-07-31T16:10:13.437Z",
+    "updated_at": "2026-07-31T16:19:48.759Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 8,
+  "fields": {
+    "image": "gallery/MA9.webp",
+    "caption": "Coffee",
+    "alt_text": "Coffee, Best",
+    "display_order": 7,
+    "is_active": true,
+    "created_at": "2026-07-31T16:13:27.480Z",
+    "updated_at": "2026-07-31T16:13:27.480Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 9,
+  "fields": {
+    "image": "gallery/MA8.webp",
+    "caption": "Breakfast, Brunch",
+    "alt_text": "Breakfast, Brunch, Mitchenton",
+    "display_order": 10,
+    "is_active": true,
+    "created_at": "2026-07-31T16:14:41.151Z",
+    "updated_at": "2026-07-31T16:14:41.151Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 10,
+  "fields": {
+    "image": "gallery/MA11.jpg",
+    "caption": "Family",
+    "alt_text": "Family Friendly, Dog Friendly",
+    "display_order": 5,
+    "is_active": true,
+    "created_at": "2026-07-31T16:16:37.536Z",
+    "updated_at": "2026-07-31T16:19:48.761Z"
+  }
+},
+{
+  "model": "gallery.galleryimage",
+  "pk": 11,
+  "fields": {
+    "image": "gallery/HeroPhoto.jpg",
+    "caption": "Mitchelton, Cafe, Brunch,Coffee, DOG",
+    "alt_text": "Mitchelton, Cafe, Brunch,Coffee, DOG",
+    "display_order": 0,
+    "is_active": true,
+    "created_at": "2026-07-31T16:19:16.962Z",
+    "updated_at": "2026-07-31T16:19:16.962Z"
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": 7,
+  "fields": {
+    "title": "Birthday Promotion",
+    "description": "",
+    "image": "promotions/Cafe-view1.jpeg",
+    "start_date": "2026-09-01",
+    "end_date": "2026-08-03",
+    "is_active": true,
+    "display_order": 0,
+    "created_at": "2026-07-31T15:11:55.272Z",
+    "updated_at": "2026-07-31T15:11:55.272Z"
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": 8,
+  "fields": {
+    "title": "another promotion",
+    "description": "hh",
+    "image": "promotions/logo.jpg",
+    "start_date": "2026-08-02",
+    "end_date": "2026-08-07",
+    "is_active": true,
+    "display_order": 2,
+    "created_at": "2026-07-31T15:19:24.325Z",
+    "updated_at": "2026-07-31T15:43:00.184Z"
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 1,
+  "fields": {
+    "day_of_week": 0,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 2,
+  "fields": {
+    "day_of_week": 1,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 3,
+  "fields": {
+    "day_of_week": 2,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 4,
+  "fields": {
+    "day_of_week": 3,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 5,
+  "fields": {
+    "day_of_week": 4,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 6,
+  "fields": {
+    "day_of_week": 5,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+},
+{
+  "model": "contact.openinghours",
+  "pk": 7,
+  "fields": {
+    "day_of_week": 6,
+    "open_time": "06:30:00",
+    "close_time": "14:00:00",
+    "is_closed": false
+  }
+}
+]
