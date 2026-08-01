@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         forest: "#073B05",
         blush: "#FBDCE7",
-        paper: "#FBF8F2",
+        paper: "#EFE6D3",
         rose: "#C9788F",
         card: "#FFFDF8",
         oat: "#E3DCCE",
