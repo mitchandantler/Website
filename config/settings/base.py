@@ -153,6 +153,17 @@ RESEND_API_KEY = env("RESEND_API_KEY", default="")
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="no-reply@mitchandantler.com")
 CONTACT_NOTIFICATION_EMAIL = env("CONTACT_NOTIFICATION_EMAIL", default="")
 
+# Resend's SMTP relay — lets Django's built-in mail (admin password reset)
+# send through the same provider as Contact form notifications (which call
+# the Resend API directly, see apps/contact/services.py). Overridden to the
+# console backend in development.py.
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.resend.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "resend"
+EMAIL_HOST_PASSWORD = RESEND_API_KEY
+EMAIL_USE_TLS = True
+
 
 # --- Django REST Framework ------------------------------------------------
 
