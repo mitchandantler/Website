@@ -22,14 +22,30 @@
         {% endfor %}
       </select>
 
-      <a
-        :href="selected"
-        target="_blank"
-        rel="noopener"
-        class="mt-4 inline-block rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:bg-neutral-700"
-      >
-        Continue to Order
-      </a>
+      {% if site_settings.gift_vouchers_url %}
+        <template x-if="selected === '{{ site_settings.gift_vouchers_url|escapejs }}'">
+          <div class="mt-4 overflow-hidden rounded-lg border border-neutral-200" style="min-height: 600px;">
+            <iframe
+              :src="selected"
+              class="h-full w-full"
+              style="min-height: 600px;"
+              loading="lazy"
+              title="Gift Vouchers"
+            ></iframe>
+          </div>
+        </template>
+      {% endif %}
+
+      <template x-if="selected !== '{{ site_settings.gift_vouchers_url|escapejs }}'">
+        <a
+          :href="selected"
+          target="_blank"
+          rel="noopener"
+          class="mt-4 inline-block rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:bg-neutral-700"
+        >
+          Continue to Order
+        </a>
+      </template>
     </div>
   {% else %}
     <div class="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 p-6">
