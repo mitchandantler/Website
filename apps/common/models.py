@@ -30,6 +30,7 @@ class SiteSetting(models.Model):
     uber_eats_url = models.URLField(blank=True, max_length=350)
     doordash_url = models.URLField(blank=True, max_length=350)
     qr_ordering_url = models.URLField(blank=True, max_length=350)
+    gift_vouchers_url = models.URLField(blank=True, max_length=350)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

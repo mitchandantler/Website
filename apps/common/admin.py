@@ -23,7 +23,7 @@ class SiteSettingAdmin(admin.ModelAdmin):
             "fields": ("opentable_embed_url",),
         }),
         ("Order Online", {
-            "fields": ("uber_eats_url", "doordash_url", "qr_ordering_url"),
+            "fields": ("uber_eats_url", "doordash_url", "qr_ordering_url", "gift_vouchers_url"),
         }),
     )
 

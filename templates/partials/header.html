@@ -15,7 +15,7 @@
         <a href="{% url 'booking:booking' %}" class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700">
           Book a Table
         </a>
-        {% if site_settings.qr_ordering_url or site_settings.uber_eats_url or site_settings.doordash_url %}
+        {% if site_settings.qr_ordering_url or site_settings.uber_eats_url or site_settings.doordash_url or site_settings.gift_vouchers_url %}
           <div class="relative" x-data="{ orderMenuOpen: false }" @mouseenter="orderMenuOpen = true" @mouseleave="orderMenuOpen = false">
             <a href="{% url 'booking:order_online' %}" class="rounded-full border border-neutral-900 px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100">
               Order Online
@@ -34,6 +34,9 @@
               {% endif %}
               {% if site_settings.doordash_url %}
                 <a href="{% url 'booking:order_online' %}?method=doordash" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">DoorDash</a>
+              {% endif %}
+              {% if site_settings.gift_vouchers_url %}
+                <a href="{{ site_settings.gift_vouchers_url }}" target="_blank" rel="noopener" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">Gift Vouchers</a>
               {% endif %}
             </div>
           </div>
