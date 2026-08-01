@@ -30,8 +30,7 @@
   "model": "website.homepagecontent",
   "pk": 1,
   "fields": {
-    "hero_heading": "Great coffee, honest food,",
-    "hero_heading_accent": "good company.",
+    "hero_heading": "Great coffee, honest food, good company.",
     "hero_subheading": "A neighbourhood café serving breakfast, brunch, and coffee done properly.",
     "created_at": "2026-07-31T13:43:21.337Z",
     "updated_at": "2026-07-31T13:43:21.337Z"

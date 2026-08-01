@@ -8,17 +8,7 @@ class HomePageContent(models.Model):
 
     hero_heading = models.CharField(
         max_length=200,
-        default="Great coffee, honest food,",
-    )
-    hero_heading_accent = models.CharField(
-        max_length=100,
-        blank=True,
-        default="good company.",
-        help_text=(
-            "Optional short phrase rendered after the main heading in an "
-            "italic accent color, e.g. 'good company.' — leave blank to "
-            "skip it."
-        ),
+        default="Great coffee, honest food, good company.",
     )
     hero_subheading = models.TextField(
         default=(
