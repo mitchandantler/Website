@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden bg-forest">
   {% if hero_images %}
     <div
       x-data="{ active: 0 }"
@@ -28,26 +28,26 @@
           class="absolute inset-0 h-full w-full object-cover"
         >
       {% endfor %}
-      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-forest/[.86] via-forest/[.62] to-forest/[.30]"></div>
     </div>
   {% endif %}
 
   <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <div class="max-w-2xl">
-      <p class="text-sm font-semibold uppercase tracking-wide {% if hero_images %}text-white/80{% else %}text-neutral-500{% endif %}">
+      <p class="text-sm font-semibold uppercase tracking-wide text-blush">
         Mitch &amp; Antler
       </p>
-      <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl {% if hero_images %}text-white{% else %}text-neutral-900{% endif %}">
-        {{ hero_content.hero_heading }}
+      <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl text-paper">
+        {{ hero_content.hero_heading }}{% if hero_content.hero_heading_accent %} <em class="italic text-blush">{{ hero_content.hero_heading_accent }}</em>{% endif %}
       </h1>
-      <p class="mt-4 text-lg {% if hero_images %}text-white/90{% else %}text-neutral-600{% endif %}">
+      <p class="mt-4 text-lg text-mist-light">
         {{ hero_content.hero_subheading }}
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
-        <a href="{% url 'booking:booking' %}" class="rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:bg-neutral-700">
+        <a href="{% url 'booking:booking' %}" class="rounded-full bg-blush px-6 py-3 text-sm font-semibold text-plum hover:bg-paper">
           Book a Table
         </a>
-        <a href="{% url 'booking:order_online' %}" class="rounded-full border px-6 py-3 text-sm font-semibold {% if hero_images %}border-white text-white hover:bg-white/10{% else %}border-neutral-900 text-neutral-900 hover:bg-neutral-100{% endif %}">
+        <a href="{% url 'booking:order_online' %}" class="rounded-full border border-blush/60 px-6 py-3 text-sm font-semibold text-paper hover:bg-blush/[.16]">
           Order Online
         </a>
       </div>
@@ -56,10 +56,10 @@
 </section>
 
 {% if featured_promotions %}
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 bg-paper">
     <div class="flex items-baseline justify-between">
-      <h2 class="text-lg font-semibold text-neutral-900">Current Promotions</h2>
-      <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-neutral-600 hover:text-neutral-900">See all promotions</a>
+      <h2 class="text-lg font-semibold text-bark">Current Promotions</h2>
+      <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-rose hover:text-forest">See all promotions</a>
     </div>
     <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
       {% for promotion in featured_promotions %}

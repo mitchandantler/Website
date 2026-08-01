@@ -1,14 +1,16 @@
-<div class="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+<div class="overflow-hidden rounded-lg border border-oat bg-card">
   {% if promotion.image %}
     <img src="{{ promotion.image.url }}" alt="{{ promotion.title }}" class="h-40 w-full object-cover">
+  {% else %}
+    <div class="h-40 w-full bg-forest"></div>
   {% endif %}
   <div class="p-4">
-    <h3 class="font-semibold text-neutral-900">{{ promotion.title }}</h3>
+    <h3 class="font-semibold text-bark">{{ promotion.title }}</h3>
     {% if promotion.description %}
-      <p class="mt-1 text-sm text-neutral-600">{{ promotion.description }}</p>
+      <p class="mt-1 text-sm text-sage">{{ promotion.description }}</p>
     {% endif %}
     {% if promotion.end_date %}
-      <p class="mt-2 text-xs text-neutral-500">Ends {{ promotion.end_date|date:"j M Y" }}</p>
+      <p class="mt-2 inline-block rounded-full bg-blush-tint px-2 py-1 text-xs uppercase tracking-wide text-blush-text">Ends {{ promotion.end_date|date:"j M Y" }}</p>
     {% endif %}
   </div>
 </div>
