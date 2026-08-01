@@ -86,6 +86,7 @@ setting needed.
 - Site loads but completely unstyled → `static/css/tailwind.css` wasn't committed/up to date, or `collectstatic` didn't run
 - Data disappears after a redeploy → `DATABASE_URL` isn't set (site silently fell back to ephemeral SQLite)
 - Local admin content doesn't match live site → local and Render have always been separate databases; see §1b for the one-time migration
+- Uploaded images (hero, menu, gallery, promotions) don't display at all in production, even after §1b's data migration → **root cause found 2026-08-01**: `config/urls.py` only served `MEDIA_URL` when `settings.DEBUG` was `True`, so `/media/*` 404'd in production regardless of whether the file existed. Fixed by serving media in every environment (see the comment in `config/urls.py`) — acceptable for this site's traffic level since there's no S3/R2/CDN for media yet; revisit if traffic grows. The 16 real image files (~7MB) were also force-added to git (`git add -f media/...`) since `.gitignore` normally excludes `/media/*` and Render has no other way to receive them. **This does not solve future uploads** — any new image uploaded via the live `/admin/` after this still lands on Render's ephemeral disk and vanishes on the next redeploy; that's the same unresolved persistent-storage decision flagged in §1b Step 4
 
 ---
 

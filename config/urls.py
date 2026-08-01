@@ -50,8 +50,13 @@ urlpatterns = [
     path('', include('apps.website.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Served in every environment, not just DEBUG — Render has no separate web
+# server or S3/R2 storage configured for user-uploaded media yet, so without
+# this route /media/* 404s in production and every uploaded image (hero,
+# menu, gallery, promotions) is unreachable regardless of whether the file
+# exists. Fine for this site's traffic level; revisit if that changes.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:
         urlpatterns += [path('__debug__/', include('debug_toolbar.urls'))]
