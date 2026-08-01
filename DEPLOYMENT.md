@@ -43,7 +43,7 @@ Render on push to `main`).
 
 | Variable | Value |
 |---|---|
-| `DJANGO_SETTINGS_MODULE` | `config.settings.production` — **without this, `manage.py` defaults to `config.settings.development`, which needs `debug_toolbar` (a dev-only package not installed in production) — this was the exact cause of the 2026-08-01 build failure** |
+| `DJANGO_SETTINGS_MODULE` | `config.settings.production` — recommended for clarity, but **`manage.py` now auto-detects Render via the `RENDER=true` variable Render sets on every service automatically, and defaults to production settings even if this isn't set explicitly** (added after this env var failed to take effect on a second deploy attempt — root cause of that second failure was never confirmed, this is a safety net either way) |
 | `SECRET_KEY` | A real generated key — `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`. Never reuse the local dev key from `.env` |
 | `ALLOWED_HOSTS` | Your Render subdomain (e.g. `mitchandantler.onrender.com`) plus `mitchandantler.com,www.mitchandantler.com` once DNS is pointed here. No default — will crash on startup if unset |
 | `DATABASE_URL` | A Render PostgreSQL instance's connection string (Render can provision one — add a Postgres service and Render usually injects this automatically if linked). **Without this it silently falls back to SQLite** (via the default in `config/settings/base.py`), which loses all data on every redeploy on Render's ephemeral filesystem — do not leave this unset |
@@ -81,7 +81,7 @@ setting needed.
 
 ### Troubleshooting checklist for a failed Render build
 
-- `ModuleNotFoundError: No module named 'debug_toolbar'` → `DJANGO_SETTINGS_MODULE` isn't set to `config.settings.production` (see above)
+- `ModuleNotFoundError: No module named 'debug_toolbar'` → should no longer happen at all now that `manage.py` auto-detects Render via `RENDER=true` (see above) and forces production settings regardless of `DJANGO_SETTINGS_MODULE`. If it somehow still happens, double-check Render is actually setting `RENDER=true` (it should, automatically, on every service) — verify under the service's Environment tab
 - `ImproperlyConfigured: ... ALLOWED_HOSTS` → that env var isn't set
 - Site loads but completely unstyled → `static/css/tailwind.css` wasn't committed/up to date, or `collectstatic` didn't run
 - Data disappears after a redeploy → `DATABASE_URL` isn't set (site silently fell back to ephemeral SQLite)

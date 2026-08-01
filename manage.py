@@ -6,7 +6,17 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.development')
+    # Render sets RENDER=true on every service automatically — fall back to
+    # production settings there even if DJANGO_SETTINGS_MODULE isn't set
+    # explicitly in the dashboard, since that's been a recurring deploy
+    # failure (debug_toolbar, a dev-only dependency, isn't installed in
+    # production and development.py requires it).
+    default_settings = (
+        'config.settings.production'
+        if os.environ.get('RENDER')
+        else 'config.settings.development'
+    )
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', default_settings)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
