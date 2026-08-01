@@ -1,0 +1,38 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<p>
+  Upload a CSV file to create or update Menu Items in bulk. Columns:
+</p>
+<ul>
+  <li><strong>category</strong> (required) — must match an existing Menu Category name exactly (e.g. "All Day Menu", "Little Ones", "Coffee and Frappes", "Cold Beverages", "Cold Drinks")</li>
+  <li><strong>name</strong> (required) — the menu item's name</li>
+  <li><strong>price</strong> (required) — e.g. 12.50</li>
+  <li><strong>description</strong> (optional)</li>
+  <li><strong>dietary_tags</strong> (optional) — comma-separated, e.g. "Vegan, Gluten Free"</li>
+  <li><strong>is_available</strong> (optional) — true/false, defaults to true</li>
+  <li><strong>display_order</strong> (optional) — number controlling order within the category, defaults to 0</li>
+</ul>
+<p>
+  If a row's category + name matches an existing item, that item is
+  <strong>updated</strong>. Otherwise a new item is <strong>created</strong>.
+  It's safe to re-upload the same file after fixing a typo — nothing will
+  be duplicated.
+</p>
+<p>
+  <strong>Nothing goes live automatically.</strong> Every item this import
+  creates or updates is marked "unapproved" and stays hidden from the
+  public Menu page until you review it here (double-check the price,
+  description, and especially the dietary tags) and approve it — filter by
+  "Is approved: No" after importing, then select the rows and use the
+  "Approve selected menu items" action.
+</p>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Import" class="default">
+</form>
+{% endblock %}

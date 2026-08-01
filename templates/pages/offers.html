@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Promotions — Mitch & Antler{% endblock %}
+{% block meta_description %}Current specials and promotions at Mitch & Antler.{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">Promotions</h1>
+
+  {% if promotions %}
+    <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {% for promotion in promotions %}
+        {% include "components/promotion_card.html" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="mt-8 text-neutral-600">No current promotions — check back soon.</p>
+  {% endif %}
+</section>
+{% endblock %}

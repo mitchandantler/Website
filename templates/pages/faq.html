@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ — Mitch & Antler{% endblock %}
+{% block meta_description %}Frequently asked questions about Mitch & Antler.{% endblock %}
+
+{% block structured_data %}
+  {% if faq_schema_json %}
+    <script type="application/ld+json">{{ faq_schema_json|safe }}</script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">FAQ</h1>
+
+  {% if faq_items %}
+    <div class="mt-8 divide-y divide-neutral-200">
+      {% for item in faq_items %}
+        <div x-data="{ open: false }" class="py-4">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between text-left"
+            @click="open = !open"
+            :aria-expanded="open"
+          >
+            <span class="font-medium text-neutral-900">{{ item.question }}</span>
+            <svg
+              class="h-5 w-5 flex-shrink-0 text-neutral-500 transition"
+              :class="open ? 'rotate-180' : ''"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </button>
+          <div x-show="open" x-cloak class="mt-2 text-sm text-neutral-600">
+            {{ item.answer }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="mt-8 text-neutral-600">No FAQs yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

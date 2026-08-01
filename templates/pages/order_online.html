@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Order Online — Mitch & Antler{% endblock %}
+{% block meta_description %}Order Mitch & Antler online via Uber Eats, DoorDash, or pickup.{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">Order Online</h1>
+
+  {% if ordering_options %}
+    <div class="mt-8" x-data="{ selected: '{{ initial_selected_url }}' }">
+      <label for="order-method" class="block text-sm font-medium text-neutral-700">
+        Choose an ordering method
+      </label>
+      <select
+        id="order-method"
+        x-model="selected"
+        class="mt-1 block w-full rounded-md border border-neutral-300 px-3 py-2 text-sm shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
+      >
+        {% for option in ordering_options %}
+          <option value="{{ option.url }}">{{ option.label }}</option>
+        {% endfor %}
+      </select>
+
+      <a
+        :href="selected"
+        target="_blank"
+        rel="noopener"
+        class="mt-4 inline-block rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:bg-neutral-700"
+      >
+        Continue to Order
+      </a>
+    </div>
+  {% else %}
+    <div class="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+      <p class="text-neutral-700">
+        Online ordering isn't set up yet — please call us to place an order.
+      </p>
+      {% if site_settings.phone_number %}
+        <p class="mt-4 text-lg font-semibold text-neutral-900">
+          <a href="tel:{{ site_settings.phone_number }}">{{ site_settings.phone_number }}</a>
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

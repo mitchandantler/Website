@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Alpine.js hides [x-cloak] elements once it initializes; this rule hides
+   them before that happens, preventing a flash of unstyled/open content. */
+[x-cloak] {
+  display: none !important;
+}

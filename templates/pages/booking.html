@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Book a Table — Mitch & Antler{% endblock %}
+{% block meta_description %}Book a table at Mitch & Antler.{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">Book a Table</h1>
+
+  {% if site_settings.opentable_embed_url %}
+    <div class="mt-8 overflow-hidden rounded-lg border border-neutral-200" style="min-height: 600px;">
+      <iframe
+        src="{{ site_settings.opentable_embed_url }}"
+        class="h-full w-full"
+        style="min-height: 600px;"
+        loading="lazy"
+      ></iframe>
+    </div>
+  {% else %}
+    <div class="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+      <p class="text-neutral-700">
+        Online booking isn't available right now — please call us to reserve a table.
+      </p>
+      {% if site_settings.phone_number %}
+        <p class="mt-4 text-lg font-semibold text-neutral-900">
+          <a href="tel:{{ site_settings.phone_number }}">{{ site_settings.phone_number }}</a>
+        </p>
+      {% endif %}
+      <a href="{% url 'contact:contact' %}" class="mt-4 inline-block text-sm font-medium text-neutral-600 hover:text-neutral-900">
+        Or get in touch via our contact page &rarr;
+      </a>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

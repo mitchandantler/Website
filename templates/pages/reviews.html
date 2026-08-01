@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews — Mitch & Antler{% endblock %}
+{% block meta_description %}What customers say about Mitch & Antler.{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">Reviews</h1>
+
+  {% if reviews %}
+    <div class="mt-8 space-y-6">
+      {% for review in reviews %}
+        {% include "components/review_card.html" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="mt-8 text-neutral-600">No reviews yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

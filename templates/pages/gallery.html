@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery — Mitch & Antler{% endblock %}
+{% block meta_description %}A look inside Mitch & Antler café.{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16" x-data="{ open: false, selected: 0 }">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">Gallery</h1>
+
+  {% if images %}
+    <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      {% for image in images %}
+        <button
+          type="button"
+          class="group relative aspect-square overflow-hidden rounded-lg bg-neutral-100"
+          @click="open = true; selected = {{ forloop.counter0 }}"
+        >
+          <img
+            src="{{ image.image.url }}"
+            alt="{{ image.alt_text }}"
+            loading="lazy"
+            class="h-full w-full object-cover transition group-hover:scale-105"
+          >
+        </button>
+      {% endfor %}
+    </div>
+
+    <div
+      x-show="open"
+      x-cloak
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+      @click.self="open = false"
+      @keydown.escape.window="open = false"
+    >
+      {% for image in images %}
+        <div x-show="selected === {{ forloop.counter0 }}" class="max-h-full max-w-3xl">
+          <img
+            src="{{ image.image.url }}"
+            alt="{{ image.alt_text }}"
+            class="max-h-[80vh] w-full rounded-lg object-contain"
+          >
+          {% if image.caption %}
+            <p class="mt-3 text-center text-sm text-neutral-200">{{ image.caption }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button
+        type="button"
+        class="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+        @click="open = false"
+        aria-label="Close"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  {% else %}
+    <p class="mt-8 text-neutral-600">Gallery coming soon.</p>
+  {% endif %}
+</section>
+{% endblock %}

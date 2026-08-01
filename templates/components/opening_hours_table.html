@@ -1,0 +1,10 @@
+<dl class="divide-y divide-neutral-200">
+  {% for hours in opening_hours %}
+    <div class="flex justify-between py-2 text-sm">
+      <dt class="text-neutral-600">{{ hours.day_name }}</dt>
+      <dd class="font-medium text-neutral-900">
+        {% if hours.is_closed %}Closed{% else %}{{ hours.open_time|default:"--" }} – {{ hours.close_time|default:"--" }}{% endif %}
+      </dd>
+    </div>
+  {% endfor %}
+</dl>

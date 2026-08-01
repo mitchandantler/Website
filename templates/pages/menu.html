@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Menu — Mitch & Antler{% endblock %}
+{% block meta_description %}Food and drink menu at Mitch & Antler café.{% endblock %}
+
+{% block structured_data %}
+  {% if menu_schema_json %}
+    <script type="application/ld+json">{{ menu_schema_json|safe }}</script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl font-bold tracking-tight text-neutral-900">Menu</h1>
+
+  {% if categories %}
+    <div x-data="{ active: {{ categories.0.id }} }" class="mt-8">
+      <div class="flex gap-2 overflow-x-auto pb-2" role="tablist">
+        {% for category in categories %}
+          <button
+            type="button"
+            role="tab"
+            @click="active = {{ category.id }}"
+            :aria-selected="active === {{ category.id }}"
+            :class="active === {{ category.id }} ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'"
+            class="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition"
+          >
+            {{ category.name }}
+          </button>
+        {% endfor %}
+      </div>
+
+      {% for category in categories %}
+        <div x-show="active === {{ category.id }}" x-cloak role="tabpanel" class="mt-6">
+          {% include "components/menu_category_section.html" %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="mt-8 text-neutral-600">Menu coming soon.</p>
+  {% endif %}
+</section>
+{% endblock %}

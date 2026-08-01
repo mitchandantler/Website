@@ -1,0 +1,32 @@
+# Environments
+.venv/
+venv/
+env/
+
+# Node / Tailwind build
+node_modules/
+static/css/tailwind.css
+static/css/tailwind.css.map
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+/staticfiles/
+/media/*
+!/media/.gitkeep
+/logs/*
+!/logs/.gitkeep
+
+# Secrets
+.env
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
