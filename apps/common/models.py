@@ -15,6 +15,7 @@ class SiteSetting(models.Model):
 
     google_maps_embed_url = models.URLField(
         blank=True,
+        max_length=350,
         help_text=(
             "Must be a real Google Maps EMBED url, not a share link — a "
             "normal maps.app.goo.gl/google.com/maps/place link will show "
@@ -25,7 +26,7 @@ class SiteSetting(models.Model):
             "same link is also used for the 'View on Google Maps' link."
         ),
     )
-    opentable_embed_url = models.URLField(blank=True)
+    opentable_embed_url = models.URLField(blank=True, max_length=350)
     uber_eats_url = models.URLField(blank=True, max_length=350)
     doordash_url = models.URLField(blank=True, max_length=350)
     qr_ordering_url = models.URLField(blank=True, max_length=350)
