@@ -1,44 +1,44 @@
-<header x-data="{ open: false }" class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-neutral-200">
+<header x-data="{ open: false }" class="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-oat">
   <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-      <a href="{% url 'website:home' %}" class="text-lg font-semibold tracking-tight">
+      <a href="{% url 'website:home' %}" class="text-lg font-semibold tracking-tight text-forest">
         Mitch &amp; Antler
       </a>
 
       <div class="hidden md:flex md:items-center md:gap-6">
-        <a href="{% url 'website:home' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Home</a>
-        <a href="{% url 'website:about' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">About</a>
-        <a href="{% url 'menu:menu' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Menu</a>
-        <a href="{% url 'gallery:gallery' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Gallery</a>
-        <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Promotions</a>
-        <a href="{% url 'contact:contact' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Contact</a>
-        <a href="{% url 'booking:booking' %}" class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700">
+        <a href="{% url 'website:home' %}" class="text-sm font-medium text-sage hover:text-forest">Home</a>
+        <a href="{% url 'website:about' %}" class="text-sm font-medium text-sage hover:text-forest">About</a>
+        <a href="{% url 'menu:menu' %}" class="text-sm font-medium text-sage hover:text-forest">Menu</a>
+        <a href="{% url 'gallery:gallery' %}" class="text-sm font-medium text-sage hover:text-forest">Gallery</a>
+        <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-sage hover:text-forest">Promotions</a>
+        <a href="{% url 'contact:contact' %}" class="text-sm font-medium text-sage hover:text-forest">Contact</a>
+        <a href="{% url 'booking:booking' %}" class="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-paper hover:bg-rose">
           Book a Table
         </a>
         {% if site_settings.qr_ordering_url or site_settings.uber_eats_url or site_settings.doordash_url %}
           <div class="relative" x-data="{ orderMenuOpen: false }" @mouseenter="orderMenuOpen = true" @mouseleave="orderMenuOpen = false">
-            <a href="{% url 'booking:order_online' %}" class="rounded-full border border-neutral-900 px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100">
+            <a href="{% url 'booking:order_online' %}" class="rounded-full border border-forest px-4 py-2 text-sm font-semibold text-forest hover:bg-leaf">
               Order Online
             </a>
             <div
               x-show="orderMenuOpen"
               x-cloak
               x-transition
-              class="absolute right-0 top-full w-48 rounded-md border border-neutral-200 bg-white py-1 shadow-lg"
+              class="absolute right-0 top-full w-48 rounded-md border border-oat bg-card py-1 shadow-lg"
             >
               {% if site_settings.qr_ordering_url %}
-                <a href="{% url 'booking:order_online' %}?method=pickup" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">Order for Pickup</a>
+                <a href="{% url 'booking:order_online' %}?method=pickup" class="block px-4 py-2 text-sm text-sage hover:bg-leaf">Order for Pickup</a>
               {% endif %}
               {% if site_settings.uber_eats_url %}
-                <a href="{% url 'booking:order_online' %}?method=ubereats" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">Uber Eats</a>
+                <a href="{% url 'booking:order_online' %}?method=ubereats" class="block px-4 py-2 text-sm text-sage hover:bg-leaf">Uber Eats</a>
               {% endif %}
               {% if site_settings.doordash_url %}
-                <a href="{% url 'booking:order_online' %}?method=doordash" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">DoorDash</a>
+                <a href="{% url 'booking:order_online' %}?method=doordash" class="block px-4 py-2 text-sm text-sage hover:bg-leaf">DoorDash</a>
               {% endif %}
             </div>
           </div>
         {% else %}
-          <a href="{% url 'booking:order_online' %}" class="rounded-full border border-neutral-900 px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100">
+          <a href="{% url 'booking:order_online' %}" class="rounded-full border border-forest px-4 py-2 text-sm font-semibold text-forest hover:bg-leaf">
             Order Online
           </a>
         {% endif %}
@@ -46,7 +46,7 @@
 
       <button
         type="button"
-        class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-neutral-700 hover:bg-neutral-100"
+        class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-sage hover:bg-leaf"
         @click="open = !open"
         :aria-expanded="open"
         aria-controls="mobile-menu"
@@ -62,14 +62,14 @@
     </div>
 
     <div id="mobile-menu" x-show="open" x-cloak class="md:hidden pb-4 space-y-1">
-      <a href="{% url 'website:home' %}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 hover:bg-neutral-100">Home</a>
-      <a href="{% url 'website:about' %}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 hover:bg-neutral-100">About</a>
-      <a href="{% url 'menu:menu' %}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 hover:bg-neutral-100">Menu</a>
-      <a href="{% url 'gallery:gallery' %}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 hover:bg-neutral-100">Gallery</a>
-      <a href="{% url 'promotions:offers' %}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 hover:bg-neutral-100">Promotions</a>
-      <a href="{% url 'contact:contact' %}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 hover:bg-neutral-100">Contact</a>
-      <a href="{% url 'booking:booking' %}" class="block rounded-md px-3 py-2 text-base font-semibold text-neutral-900">Book a Table</a>
-      <a href="{% url 'booking:order_online' %}" class="block rounded-md px-3 py-2 text-base font-semibold text-neutral-900">Order Online</a>
+      <a href="{% url 'website:home' %}" class="block rounded-md px-3 py-2 text-base font-medium text-sage hover:bg-leaf hover:text-forest">Home</a>
+      <a href="{% url 'website:about' %}" class="block rounded-md px-3 py-2 text-base font-medium text-sage hover:bg-leaf hover:text-forest">About</a>
+      <a href="{% url 'menu:menu' %}" class="block rounded-md px-3 py-2 text-base font-medium text-sage hover:bg-leaf hover:text-forest">Menu</a>
+      <a href="{% url 'gallery:gallery' %}" class="block rounded-md px-3 py-2 text-base font-medium text-sage hover:bg-leaf hover:text-forest">Gallery</a>
+      <a href="{% url 'promotions:offers' %}" class="block rounded-md px-3 py-2 text-base font-medium text-sage hover:bg-leaf hover:text-forest">Promotions</a>
+      <a href="{% url 'contact:contact' %}" class="block rounded-md px-3 py-2 text-base font-medium text-sage hover:bg-leaf hover:text-forest">Contact</a>
+      <a href="{% url 'booking:booking' %}" class="block rounded-md px-3 py-2 text-base font-semibold text-forest">Book a Table</a>
+      <a href="{% url 'booking:order_online' %}" class="block rounded-md px-3 py-2 text-base font-semibold text-forest">Order Online</a>
     </div>
   </nav>
 </header>
