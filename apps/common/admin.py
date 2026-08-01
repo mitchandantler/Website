@@ -7,6 +7,11 @@ from .models import SiteSetting, Socials
 
 @admin.register(SiteSetting)
 class SiteSettingAdmin(admin.ModelAdmin):
+    # Duplicates the Save buttons at the top of the page (in addition to the
+    # bottom) — this is a long form with several fieldsets, and having to
+    # scroll all the way down just to save was reported as confusing.
+    save_on_top = True
+
     fieldsets = (
         ("Contact Details", {
             "fields": ("phone_number", "contact_email", "address"),
