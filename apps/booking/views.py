@@ -17,6 +17,7 @@ class OrderOnlineView(TemplateView):
             ("pickup", "Order for Pickup", site_settings.qr_ordering_url),
             ("ubereats", "Uber Eats", site_settings.uber_eats_url),
             ("doordash", "DoorDash", site_settings.doordash_url),
+            ("giftvouchers", "Gift Vouchers", site_settings.gift_vouchers_url),
         ]
         ordering_options = [
             {"key": key, "label": label, "url": url}

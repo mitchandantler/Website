@@ -36,7 +36,7 @@
                 <a href="{% url 'booking:order_online' %}?method=doordash" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">DoorDash</a>
               {% endif %}
               {% if site_settings.gift_vouchers_url %}
-                <a href="{{ site_settings.gift_vouchers_url }}" target="_blank" rel="noopener" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">Gift Vouchers</a>
+                <a href="{% url 'booking:order_online' %}?method=giftvouchers" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">Gift Vouchers</a>
               {% endif %}
             </div>
           </div>
