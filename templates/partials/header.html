@@ -12,7 +12,7 @@
         <a href="{% url 'gallery:gallery' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Gallery</a>
         <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Promotions</a>
         <a href="{% url 'contact:contact' %}" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Contact</a>
-        <a href="{% url 'booking:booking' %}" class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700">
+        <a href="{% url 'booking:booking' %}" class="rounded-full bg-[#073B05] px-4 py-2 text-sm font-semibold text-white hover:bg-[#073B05]/90">
           Book a Table
         </a>
         {% if site_settings.qr_ordering_url or site_settings.uber_eats_url or site_settings.doordash_url or site_settings.gift_vouchers_url %}
