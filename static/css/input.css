@@ -7,15 +7,3 @@
 [x-cloak] {
   display: none !important;
 }
-
-/* Global default link color. Any element-level utility class (e.g.
-   text-white on a button) still wins via specificity, so this only affects
-   links that don't already set their own color. */
-@layer base {
-  a {
-    color: theme("colors.forest");
-  }
-  a:hover {
-    color: theme("colors.rose");
-  }
-}
