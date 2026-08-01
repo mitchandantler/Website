@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from apps.common.schema import build_local_business_schema, to_json_ld
 from apps.promotions.models import Promotion
 
-from .models import FAQItem, HeroImage, HomePageContent, Review
+from .models import AboutPageContent, FAQItem, HeroImage, HomePageContent, Review
 
 
 class HomeView(TemplateView):
@@ -33,6 +33,11 @@ class HomeView(TemplateView):
 
 class AboutView(TemplateView):
     template_name = "pages/about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["about_content"] = AboutPageContent.load()
+        return context
 
 
 class ReviewsView(TemplateView):

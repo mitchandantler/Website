@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.html import format_html
 
-from .models import FAQItem, HeroImage, HomePageContent, Review
+from .models import AboutPageContent, FAQItem, HeroImage, HomePageContent, Review
 
 
 @admin.register(HomePageContent)
@@ -17,6 +17,20 @@ class HomePageContentAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None) -> HttpResponseRedirect:
         obj = HomePageContent.load()
         url = reverse("admin:website_homepagecontent_change", args=[obj.pk])
+        return HttpResponseRedirect(url)
+
+
+@admin.register(AboutPageContent)
+class AboutPageContentAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request) -> bool:
+        return not AboutPageContent.objects.exists()
+
+    def has_delete_permission(self, request, obj=None) -> bool:
+        return False
+
+    def changelist_view(self, request, extra_context=None) -> HttpResponseRedirect:
+        obj = AboutPageContent.load()
+        url = reverse("admin:website_aboutpagecontent_change", args=[obj.pk])
         return HttpResponseRedirect(url)
 
 

@@ -11,8 +11,8 @@ hosting architecture, rollback strategy), see
 `docs/phase-00-foundation/07-deployment.md`. This file is the concrete,
 step-by-step, always-current checklist for actually doing it.
 
-Last updated: 2026-08-01 — after moving Socials out of Site Settings into
-its own singleton model/admin entry (Module 1 revision below).
+Last updated: 2026-08-01 — after diagnosing the first real Render deploy
+failure and adding §1a (Actual Hosting: Render) below.
 (Module 7, Careers, was deliberately skipped for now.)
 
 ---
@@ -25,6 +25,66 @@ Visitors → Cloudflare (DNS, CDN, TLS) → Crazy Domains (registrar)
 ```
 
 Domain: `mitchandantler.com`
+
+**This was the original plan from `docs/phase-00-foundation/07-deployment.md`.
+The site is actually being deployed to Render (a managed PaaS) instead — see
+§1a below, which is the one that matters day-to-day. Sections 2–9 below
+describe the VPS approach and are kept for reference/a possible future
+migration; they don't apply to the current Render deploy.**
+
+---
+
+## 1a. Actual Hosting: Render
+
+Repo: `https://github.com/mitchandantler/Website` (GitHub → auto-deploys to
+Render on push to `main`).
+
+### Required environment variables (Render dashboard → service → Environment)
+
+| Variable | Value |
+|---|---|
+| `DJANGO_SETTINGS_MODULE` | `config.settings.production` — **without this, `manage.py` defaults to `config.settings.development`, which needs `debug_toolbar` (a dev-only package not installed in production) — this was the exact cause of the 2026-08-01 build failure** |
+| `SECRET_KEY` | A real generated key — `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`. Never reuse the local dev key from `.env` |
+| `ALLOWED_HOSTS` | Your Render subdomain (e.g. `mitchandantler.onrender.com`) plus `mitchandantler.com,www.mitchandantler.com` once DNS is pointed here. No default — will crash on startup if unset |
+| `DATABASE_URL` | A Render PostgreSQL instance's connection string (Render can provision one — add a Postgres service and Render usually injects this automatically if linked). **Without this it silently falls back to SQLite** (via the default in `config/settings/base.py`), which loses all data on every redeploy on Render's ephemeral filesystem — do not leave this unset |
+| `TIME_ZONE` | `Australia/Sydney` (optional, that's already the default) |
+| `RESEND_API_KEY`, `DEFAULT_FROM_EMAIL`, `CONTACT_NOTIFICATION_EMAIL` | For the Contact form email — see §3 below for what happens if left blank |
+
+### Build Command
+
+```
+pip install -r requirements/production.txt && python manage.py migrate && python manage.py collectstatic --no-input
+```
+
+No `npm` step needed — **Render's native Python build environment has no
+Node.js**, so the compiled `static/css/tailwind.css` is committed straight
+to the repo instead of being built during deploy (see `.gitignore` —
+`static/css/tailwind.css` is deliberately *not* ignored, unlike
+`node_modules/`). **Whenever you change a template or `static/css/input.css`
+locally, run `npm run build:css` and commit the updated
+`static/css/tailwind.css` before pushing** — otherwise Render will deploy
+stale CSS.
+
+### Start Command
+
+```
+gunicorn config.wsgi:application
+```
+
+### Python version
+
+Render defaults to the newest available Python (3.14.3 as of 2026-08-01)
+unless told otherwise, which is untested against this project (developed
+and tested on 3.13.2). A `.python-version` file in the repo root pins this
+to `3.13.2` — Render respects this automatically, no separate dashboard
+setting needed.
+
+### Troubleshooting checklist for a failed Render build
+
+- `ModuleNotFoundError: No module named 'debug_toolbar'` → `DJANGO_SETTINGS_MODULE` isn't set to `config.settings.production` (see above)
+- `ImproperlyConfigured: ... ALLOWED_HOSTS` → that env var isn't set
+- Site loads but completely unstyled → `static/css/tailwind.css` wasn't committed/up to date, or `collectstatic` didn't run
+- Data disappears after a redeploy → `DATABASE_URL` isn't set (site silently fell back to ephemeral SQLite)
 
 ---
 
@@ -262,6 +322,9 @@ this whenever a new module ships.
 | Module 1 revision — Site Settings admin fieldsets clarified | User reported "Social media, order online items are not visible" in `/admin/` — fields were all present and functional (verified via test client) but buried under a vague "Integrations" fieldset with no mention of "Order Online" anywhere, and "Social Links" (not "Social Media"). Split into 5 clearly-named fieldsets: Contact Details, Google Maps, Booking, **Order Online** (`uber_eats_url`/`doordash_url`/`qr_ordering_url`), **Social Media** (`instagram_url`/`facebook_url`/`tiktok_url`) — verified each label renders on the change form | No migration (fieldset labels only, no schema/model change), no env vars |
 
 | Module 1 revision — Socials moved to its own model/admin entry | Fieldset renaming wasn't enough — user wanted socials fully out of Site Settings. Added `Socials` (new singleton model, same save()/load()/delete()-noop pattern as `SiteSetting`), registered as its own `SocialsAdmin` — shows as a separate "Socials" row on the admin index, independent of "Site Settings". New `apps.common.context_processors.socials` makes it available site-wide; `footer.html`'s icon links now read `socials.instagram_url`/`facebook_url`/`tiktok_url` instead of `site_settings.*` | New migration (`common.0007_...`) removes `instagram_url`/`facebook_url`/`tiktok_url` from `SiteSetting` and creates `Socials` — **includes a `RunPython` data-copy step that runs between the create and remove operations**, carrying over the real Instagram/Facebook URLs that already existed before they'd have been dropped. Verified post-migration: both real URLs present on the new `Socials` row, footer icons still render them correctly, `SiteSetting`'s form no longer shows social fields at all |
+
+| Module 1 revision — Admin index reordered | New `apps/common/admin_ordering.py`, loaded via `CommonConfig.ready()` — patches `AdminSite.get_app_list` to a fixed order (Common → Website → Menu → Gallery → Promotions → Contact → Booking → Dashboard → Auth) instead of Django's default alphabetical order, which buried day-to-day sections under "Authentication and Authorization". Verified: "Common" (Site Settings, Socials) now shows first, Auth last | No migration, no env vars. If a new app is added later and doesn't appear in `APP_ORDER`, it just sorts to the end (not lost) — add it to the list for a specific position |
+| Module 2 revision — About page admin-editable | `AboutPageContent` (singleton, same pattern as `HomePageContent`) added to apps/website — heading + full story text now editable via `/admin/` instead of hardcoded in `about.html`. Seeded with the exact real story text already live, so nothing changed visually. Story is stored as one `TextField` (paragraphs separated by blank lines) and rendered with Django's `linebreaks` filter, which also handles HTML-escaping automatically — do **not** pre-escape `&`/etc. when editing the default/seed text in Python | New migration (`website.0004_aboutpagecontent`, seeds via the model's `default=` value, no separate data migration needed since this is a new model, not a data move). No env vars. Verified an admin edit actually changes the live page, then restored |
 
 _(Module 11, testing pass, is next. Module 7, Careers, remains deferred —
 see project memory.)_

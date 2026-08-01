@@ -5,7 +5,10 @@ env/
 
 # Node / Tailwind build
 node_modules/
-static/css/tailwind.css
+# static/css/tailwind.css is intentionally committed (not ignored) —
+# Render's Python build environment has no Node.js, so the compiled CSS
+# must already be in the repo rather than built during deploy. Run
+# `npm run build:css` locally before committing any template/CSS change.
 static/css/tailwind.css.map
 
 # Python
