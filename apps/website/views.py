@@ -2,6 +2,7 @@ from django.db.models import Avg
 from django.views.generic import TemplateView
 
 from apps.common.schema import build_local_business_schema, to_json_ld
+from apps.gallery.models import GalleryImage
 from apps.promotions.models import Promotion
 
 from .models import AboutPageContent, FAQItem, HeroImage, HomePageContent, Review
@@ -14,6 +15,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["hero_content"] = HomePageContent.load()
         context["hero_images"] = HeroImage.objects.filter(is_active=True)
+        context["gallery_preview_images"] = GalleryImage.objects.filter(is_active=True)[:6]
         context["featured_promotions"] = Promotion.objects.currently_active()[:3]
 
         reviews = Review.objects.filter(is_active=True)

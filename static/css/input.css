@@ -7,3 +7,10 @@
 [x-cloak] {
   display: none !important;
 }
+
+/* Prevents sideways page scroll from any element that slightly overflows the
+   viewport width (e.g. a button growing on hover:scale-105 near the edge, or
+   an unconstrained image) without clipping normal vertical content. */
+html, body {
+  overflow-x: hidden;
+}

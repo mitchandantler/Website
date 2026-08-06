@@ -8,35 +8,14 @@
 {% endblock %}
 
 {% block content %}
-<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-  <div class="mx-auto flex max-w-2xl flex-col items-center text-center">
-    <p class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
-      Mitch &amp; Antler
-    </p>
-    <h1 class="mt-2 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
-      {{ hero_content.hero_heading }}
-    </h1>
-    <p class="mt-4 text-lg text-neutral-600">
-      {{ hero_content.hero_subheading }}
-    </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a href="{% url 'booking:booking' %}" class="rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:bg-neutral-700">
-        Book a Table
-      </a>
-      <a href="{% url 'booking:order_online' %}" class="rounded-full border border-neutral-900 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100">
-        Order Online
-      </a>
-    </div>
-  </div>
-
+<section class="mx-auto max-w-[1320px] px-6 sm:px-10 lg:px-16 pt-4 sm:pt-6 pb-4">
   {% if hero_images %}
     <div
       x-data="{ active: 0 }"
       {% if hero_images|length > 1 %}
         x-init="setInterval(() => { active = (active + 1) % {{ hero_images|length }} }, 5000)"
       {% endif %}
-      class="relative mx-auto mt-12 aspect-video w-full overflow-hidden rounded-2xl"
-      style="max-width: 800px;"
+      class="relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-2xl ring-1 ring-brick/40 shadow-[0_0_30px_rgba(224,122,95,0.35)]"
     >
       {% for hero_image in hero_images %}
         <img
@@ -49,51 +28,120 @@
           class="absolute inset-0 h-full w-full object-cover"
         >
       {% endfor %}
+      <div class="absolute inset-0 bg-black/45"></div>
+
+      <div class="relative flex h-full flex-col items-center justify-center px-6 text-center sm:px-10">
+        <p class="text-sm font-semibold uppercase tracking-wide text-cream/80">
+          Mitch &amp; Antler
+        </p>
+        <h1 class="mt-2 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">
+          {{ hero_content.hero_heading }}
+        </h1>
+        <p class="mt-4 max-w-xl text-base text-cream/90 sm:text-lg">
+          {{ hero_content.hero_subheading }}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="{% url 'booking:booking' %}" class="rounded-full bg-charcoal px-6 py-3 text-sm font-semibold text-cream shadow-[0_0_10px_rgba(224,122,95,0.3)] transition-all duration-300 hover:scale-105 hover:bg-charcoal/80 hover:shadow-[0_0_20px_rgba(224,122,95,0.5)]">
+            Book a Table
+          </a>
+          <a href="{% url 'booking:order_online' %}" class="rounded-full bg-brick px-6 py-3 text-sm font-semibold text-white shadow-[0_0_10px_rgba(224,122,95,0.4)] transition-all duration-300 hover:scale-105 hover:brightness-90 hover:shadow-[0_0_25px_rgba(224,122,95,0.7)]">
+            Order Online
+          </a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-charcoal/60">
+        Mitch &amp; Antler
+      </p>
+      <h1 class="mt-2 text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl lg:text-7xl">
+        {{ hero_content.hero_heading }}
+      </h1>
+      <p class="mt-4 text-lg text-charcoal/80">
+        {{ hero_content.hero_subheading }}
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="{% url 'booking:booking' %}" class="rounded-full bg-charcoal px-6 py-3 text-sm font-semibold text-cream shadow-[0_0_10px_rgba(224,122,95,0.3)] transition-all duration-300 hover:scale-105 hover:bg-charcoal/80 hover:shadow-[0_0_20px_rgba(224,122,95,0.5)]">
+          Book a Table
+        </a>
+        <a href="{% url 'booking:order_online' %}" class="rounded-full bg-brick px-6 py-3 text-sm font-semibold text-white shadow-[0_0_10px_rgba(224,122,95,0.4)] transition-all duration-300 hover:scale-105 hover:brightness-90 hover:shadow-[0_0_25px_rgba(224,122,95,0.7)]">
+          Order Online
+        </a>
+      </div>
     </div>
   {% endif %}
 </section>
 
-{% if featured_promotions %}
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-    <div class="flex items-baseline justify-between">
-      <h2 class="text-lg font-semibold text-neutral-900">Current Promotions</h2>
-      <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-neutral-600 hover:text-neutral-900">See all promotions</a>
-    </div>
-    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-      {% for promotion in featured_promotions %}
-        {% include "components/promotion_card.html" %}
-      {% endfor %}
+{% if gallery_preview_images or featured_promotions %}
+  <section class="mx-auto max-w-[1320px] px-6 sm:px-10 lg:px-16 pt-4 pb-12">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
+      {% if gallery_preview_images %}
+        <div>
+          <div class="flex flex-col items-start gap-2">
+            <h2 class="text-2xl font-extrabold tracking-tight text-charcoal">Explore Us</h2>
+            <a href="{% url 'gallery:gallery' %}" class="text-sm font-medium text-brick hover:text-terracotta">See full gallery &rarr;</a>
+          </div>
+          <div class="mt-6 grid grid-cols-3 gap-3">
+            {% for image in gallery_preview_images %}
+              <a href="{% url 'gallery:gallery' %}" class="block overflow-hidden rounded-lg">
+                <img
+                  src="{{ image.image.url }}"
+                  alt="{{ image.alt_text }}"
+                  class="h-24 w-full object-cover transition-transform duration-300 hover:scale-105 sm:h-28"
+                >
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if featured_promotions %}
+        <div>
+          <div class="flex flex-col items-start gap-2">
+            <h2 class="text-2xl font-extrabold tracking-tight text-charcoal">Current Promotions</h2>
+            <a href="{% url 'promotions:offers' %}" class="text-sm font-medium text-brick hover:text-terracotta">See all promotions &rarr;</a>
+          </div>
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {% for promotion in featured_promotions %}
+              {% include "components/promotion_card.html" %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endif %}
 
-<section class="border-t border-neutral-200 bg-neutral-50">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
-    <a href="{% url 'menu:menu' %}" class="rounded-lg border border-neutral-200 bg-white p-6 hover:border-neutral-400">
-      <h2 class="text-base font-semibold text-neutral-900">Menu</h2>
-      <p class="mt-1 text-sm text-neutral-600">Breakfast, lunch, and drinks.</p>
+<section class="border-t border-charcoal/10 bg-sage/40">
+  <div class="mx-auto max-w-[1320px] px-6 sm:px-10 lg:px-16 py-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
+    <a href="{% url 'menu:menu' %}" class="rounded-lg border border-charcoal/10 bg-cream p-6 hover:border-brick">
+      <h2 class="text-base font-semibold text-charcoal">Menu</h2>
+      <p class="mt-1 text-sm text-charcoal/70">Breakfast, lunch, and drinks.</p>
     </a>
-    <a href="{% url 'gallery:gallery' %}" class="rounded-lg border border-neutral-200 bg-white p-6 hover:border-neutral-400">
-      <h2 class="text-base font-semibold text-neutral-900">Gallery</h2>
-      <p class="mt-1 text-sm text-neutral-600">A look inside Mitch &amp; Antler.</p>
+    <a href="{% url 'gallery:gallery' %}" class="rounded-lg border border-charcoal/10 bg-cream p-6 hover:border-brick">
+      <h2 class="text-base font-semibold text-charcoal">Gallery</h2>
+      <p class="mt-1 text-sm text-charcoal/70">A look inside Mitch &amp; Antler.</p>
     </a>
-    <a href="{% url 'contact:contact' %}" class="rounded-lg border border-neutral-200 bg-white p-6 hover:border-neutral-400">
-      <h2 class="text-base font-semibold text-neutral-900">Contact</h2>
-      <p class="mt-1 text-sm text-neutral-600">Find us and get in touch.</p>
+    <a href="{% url 'contact:contact' %}" class="rounded-lg border border-charcoal/10 bg-cream p-6 hover:border-brick">
+      <h2 class="text-base font-semibold text-charcoal">Contact</h2>
+      <p class="mt-1 text-sm text-charcoal/70">Find us and get in touch.</p>
     </a>
   </div>
 </section>
 
 {% if featured_reviews %}
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-    <div class="flex items-baseline justify-between">
-      <h2 class="text-lg font-semibold text-neutral-900">What People Are Saying</h2>
-      <a href="{% url 'website:reviews' %}" class="text-sm font-medium text-neutral-600 hover:text-neutral-900">See all reviews</a>
-    </div>
-    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-      {% for review in featured_reviews %}
-        {% include "components/review_card.html" %}
-      {% endfor %}
+  <section class="mx-auto max-w-[1320px] px-6 sm:px-10 lg:px-16 pb-12">
+    <div class="rounded-2xl border border-charcoal/10 bg-white p-8 sm:p-10">
+      <div class="flex items-baseline justify-between">
+        <h2 class="text-2xl font-extrabold tracking-tight text-charcoal">What People Are Saying</h2>
+        <a href="{% url 'website:reviews' %}" class="text-sm font-medium text-brick hover:text-terracotta">See all reviews</a>
+      </div>
+      <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {% for review in featured_reviews %}
+          {% include "components/review_card.html" %}
+        {% endfor %}
+      </div>
     </div>
   </section>
 {% endif %}
