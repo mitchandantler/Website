@@ -1,4 +1,4 @@
-from .models import SiteSetting, Socials
+from .models import OrderOnline, SiteSetting, Socials
 
 
 def site_settings(request):
@@ -9,6 +9,11 @@ def site_settings(request):
 def socials(request):
     """Makes Socials available as `socials` in every template."""
     return {"socials": Socials.load()}
+
+
+def order_online(request):
+    """Makes OrderOnline available as `order_online` in every template."""
+    return {"order_online": OrderOnline.load()}
 
 
 def canonical_url(request):

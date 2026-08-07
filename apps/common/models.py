@@ -27,10 +27,6 @@ class SiteSetting(models.Model):
         ),
     )
     opentable_embed_url = models.URLField(blank=True, max_length=350)
-    uber_eats_url = models.URLField(blank=True, max_length=350)
-    doordash_url = models.URLField(blank=True, max_length=350)
-    qr_ordering_url = models.URLField(blank=True, max_length=350)
-    gift_vouchers_url = models.URLField(blank=True, max_length=350)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -98,5 +94,39 @@ class Socials(models.Model):
 
     @classmethod
     def load(cls) -> "Socials":
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+
+class OrderOnline(models.Model):
+    """Singleton ordering-method links — same pattern as Socials, split
+    out of SiteSetting into its own admin entry so it's a clearly
+    separate, easy-to-find section that mirrors the site's own Order
+    Online page/nav dropdown."""
+
+    qr_ordering_url = models.URLField(blank=True, max_length=350)
+    uber_eats_url = models.URLField(blank=True, max_length=350)
+    doordash_url = models.URLField(blank=True, max_length=350)
+    gift_vouchers_url = models.URLField(blank=True, max_length=350)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Order Online"
+        verbose_name_plural = "Order Online"
+
+    def __str__(self) -> str:
+        return "Order Online"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    @classmethod
+    def load(cls) -> "OrderOnline":
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj

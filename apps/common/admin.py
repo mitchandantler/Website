@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import SiteSetting, Socials
+from .models import OrderOnline, SiteSetting, Socials
 
 
 @admin.register(SiteSetting)
@@ -21,9 +21,6 @@ class SiteSettingAdmin(admin.ModelAdmin):
         }),
         ("Booking", {
             "fields": ("opentable_embed_url",),
-        }),
-        ("Order Online", {
-            "fields": ("uber_eats_url", "doordash_url", "qr_ordering_url", "gift_vouchers_url"),
         }),
     )
 
@@ -52,4 +49,20 @@ class SocialsAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None) -> HttpResponseRedirect:
         obj = Socials.load()
         url = reverse("admin:common_socials_change", args=[obj.pk])
+        return HttpResponseRedirect(url)
+
+
+@admin.register(OrderOnline)
+class OrderOnlineAdmin(admin.ModelAdmin):
+    fields = ("qr_ordering_url", "uber_eats_url", "doordash_url", "gift_vouchers_url")
+
+    def has_add_permission(self, request) -> bool:
+        return not OrderOnline.objects.exists()
+
+    def has_delete_permission(self, request, obj=None) -> bool:
+        return False
+
+    def changelist_view(self, request, extra_context=None) -> HttpResponseRedirect:
+        obj = OrderOnline.load()
+        url = reverse("admin:common_orderonline_change", args=[obj.pk])
         return HttpResponseRedirect(url)

@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from apps.common.models import SiteSetting
+from apps.common.models import OrderOnline
 
 
 class BookingView(TemplateView):
@@ -12,12 +12,12 @@ class OrderOnlineView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        site_settings = SiteSetting.load()
+        order_online = OrderOnline.load()
         options = [
-            ("pickup", "Order for Pickup", site_settings.qr_ordering_url),
-            ("ubereats", "Uber Eats", site_settings.uber_eats_url),
-            ("doordash", "DoorDash", site_settings.doordash_url),
-            ("giftvouchers", "Gift Vouchers", site_settings.gift_vouchers_url),
+            ("pickup", "Order for Pickup", order_online.qr_ordering_url),
+            ("ubereats", "Uber Eats", order_online.uber_eats_url),
+            ("doordash", "DoorDash", order_online.doordash_url),
+            ("giftvouchers", "Gift Vouchers", order_online.gift_vouchers_url),
         ]
         ordering_options = [
             {"key": key, "label": label, "url": url}
