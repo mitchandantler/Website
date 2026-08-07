@@ -13,4 +13,21 @@
    an unconstrained image) without clipping normal vertical content. */
 html, body {
   overflow-x: hidden;
+  /* Separate from overflow-x above: this stops the trackpad/gesture-based
+     elastic "rubber-band" bounce some browsers (notably Safari on macOS)
+     show on horizontal swipes even when there's no real overflow content —
+     overflow-x alone does not prevent that gesture-driven bounce. */
+  overscroll-behavior-x: none;
+}
+
+/* Procedural wood-grain texture for the header — no image asset exists for
+   this, so it's generated with an SVG noise filter instead. Using very
+   different x/y baseFrequency values is the standard trick for turning
+   generic turbulence noise into long horizontal fiber-like streaks that
+   read as wood grain, tinted dark to sit subtly on top of the base green. */
+.header-wood-bg {
+  background-color: #1B2D20;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='120'%3E%3Cfilter id='wood'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009 0.18' numOctaves='4' seed='7' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wood)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 120px;
 }
