@@ -49,14 +49,14 @@
 },
 {
   "model": "website.heroimage",
-  "pk": 4,
+  "pk": 6,
   "fields": {
-    "image": "hero/HeroPhoto.jpg",
-    "alt_text": "HeroPhoto",
+    "image": "hero/HeroPhoto2.png",
+    "alt_text": "HeroPhoto2",
     "display_order": 1,
     "is_active": true,
-    "created_at": "2026-07-31T15:49:10.688Z",
-    "updated_at": "2026-07-31T15:49:10.688Z"
+    "created_at": "2026-08-06T11:42:53.108Z",
+    "updated_at": "2026-08-06T12:21:27.790Z"
   }
 },
 {
