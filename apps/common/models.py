@@ -26,8 +26,6 @@ class SiteSetting(models.Model):
             "same link is also used for the 'View on Google Maps' link."
         ),
     )
-    opentable_embed_url = models.URLField(blank=True, max_length=350)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -128,5 +126,40 @@ class OrderOnline(models.Model):
 
     @classmethod
     def load(cls) -> "OrderOnline":
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+
+class Booking(models.Model):
+    """Singleton booking-widget link — same pattern as Socials/OrderOnline,
+    split out of SiteSetting into its own admin entry so it's a clearly
+    separate, easy-to-find section that mirrors the site's own Book a
+    Table button/page."""
+
+    opentable_embed_url = models.URLField(
+        blank=True,
+        max_length=350,
+        help_text="Embeddable booking widget URL (e.g. NowBookIt, OpenTable) shown on the Book a Table page.",
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Booking"
+        verbose_name_plural = "Booking"
+
+    def __str__(self) -> str:
+        return "Booking"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    @classmethod
+    def load(cls) -> "Booking":
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj

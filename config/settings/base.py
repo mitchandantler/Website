@@ -88,6 +88,7 @@ TEMPLATES = [
                 "apps.common.context_processors.site_settings",
                 "apps.common.context_processors.socials",
                 "apps.common.context_processors.order_online",
+                "apps.common.context_processors.booking",
                 "apps.common.context_processors.canonical_url",
                 "apps.contact.context_processors.opening_hours",
                 "apps.contact.context_processors.service_hours_summary",

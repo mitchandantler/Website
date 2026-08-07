@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import OrderOnline, SiteSetting, Socials
+from .models import Booking, OrderOnline, SiteSetting, Socials
 
 
 @admin.register(SiteSetting)
@@ -18,9 +18,6 @@ class SiteSettingAdmin(admin.ModelAdmin):
         }),
         ("Google Maps", {
             "fields": ("google_maps_embed_url",),
-        }),
-        ("Booking", {
-            "fields": ("opentable_embed_url",),
         }),
     )
 
@@ -65,4 +62,20 @@ class OrderOnlineAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None) -> HttpResponseRedirect:
         obj = OrderOnline.load()
         url = reverse("admin:common_orderonline_change", args=[obj.pk])
+        return HttpResponseRedirect(url)
+
+
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    fields = ("opentable_embed_url",)
+
+    def has_add_permission(self, request) -> bool:
+        return not Booking.objects.exists()
+
+    def has_delete_permission(self, request, obj=None) -> bool:
+        return False
+
+    def changelist_view(self, request, extra_context=None) -> HttpResponseRedirect:
+        obj = Booking.load()
+        url = reverse("admin:common_booking_change", args=[obj.pk])
         return HttpResponseRedirect(url)

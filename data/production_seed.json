@@ -7,7 +7,6 @@
     "contact_email": "hello@mitchandantler.com",
     "address": "62 Suez St, Mitchelton QLD 4053",
     "google_maps_embed_url": "https://maps.app.goo.gl/LeFa2AjozuJQVX4t8",
-    "opentable_embed_url": "https://bookings.nowbookit.com/?accountid=e6797445-1445-4547-a711-c7b50ea8a6fb&venueid=9715&theme=light&colors=hex,0d5302,f8bbd0",
     "created_at": "2026-07-30T13:07:44.444Z",
     "updated_at": "2026-08-01T15:21:45.862Z"
   }
@@ -33,6 +32,15 @@
     "gift_vouchers_url": "https://app.gift-it.com.au/buy/mitchandantler",
     "created_at": "2026-08-07T11:10:12.454Z",
     "updated_at": "2026-08-07T11:10:12.454Z"
+  }
+},
+{
+  "model": "common.booking",
+  "pk": 1,
+  "fields": {
+    "opentable_embed_url": "https://bookings.nowbookit.com/?accountid=e6797445-1445-4547-a711-c7b50ea8a6fb&venueid=9715&theme=light&colors=hex,0d5302,f8bbd0",
+    "created_at": "2026-08-07T11:28:52.603Z",
+    "updated_at": "2026-08-07T11:28:52.603Z"
   }
 },
 {
