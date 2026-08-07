@@ -15,7 +15,7 @@
       {% if hero_images|length > 1 %}
         x-init="setInterval(() => { active = (active + 1) % {{ hero_images|length }} }, 5000)"
       {% endif %}
-      class="relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-2xl ring-1 ring-brick/40 shadow-[0_0_30px_rgba(224,122,95,0.35)]"
+      class="relative mx-auto aspect-[3/4] w-full overflow-hidden rounded-2xl ring-1 ring-brick/40 shadow-[0_0_30px_rgba(224,122,95,0.35)] sm:aspect-[16/9]"
     >
       {% for hero_image in hero_images %}
         <img
